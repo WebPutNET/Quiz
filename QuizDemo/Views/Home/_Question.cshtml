@@ -1,0 +1,19 @@
+﻿@model QuizDemo.Models.Question
+@{
+    int index = 0;
+}
+<h2>@Model.QuestionCategory.ToString()</h2>
+<div class="row">
+    <p class="text-center">@Model.QuestionContent</p>
+    <div class="row">
+        @foreach (var item in Model.Answers)
+        {
+            <div class="col-md-3">
+                @Html.ActionLink(item.Content, "GetQuestion", "Home", new { questionNumber = ViewBag.nextNumber, questionAnswer = index }, new { @class = "btn btn-info" })
+                @{index++;
+                }
+            </div>
+                    }
+
+    </div>
+</div>

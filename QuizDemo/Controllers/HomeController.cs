@@ -14,6 +14,7 @@ namespace QuizDemo.Controllers
         {
             return View();
         }
+		[HttpPost]
         public ActionResult GetQuiz(string userName, string password, string rememberMe)
         {
             SetQuestions();

@@ -31,7 +31,7 @@ namespace QuizDemo.Migrations
                     },
                     new Models.Answer()
                     {
-                        Content="Wis³a Kraków",
+                        Content="Real Madryt",
                         IsCorrect = false,
                         QuestionId=1
                     },
@@ -54,7 +54,7 @@ namespace QuizDemo.Migrations
             context.Questions.Add(new Models.Question()
             {
                 QuestionCategory = Models.QuestionCategory.Music,
-                QuestionContent = "Wska¿ tytu³ piosenki gatunku rock",
+                QuestionContent = "Wybierz piosenke gatunku rock",
                 Score = 100,
                 QuestionId = 2,
                 Answers = new List<Models.Answer>()

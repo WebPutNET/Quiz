@@ -12,21 +12,26 @@ namespace QuizDemo.Controllers
         private QuizDbContext dbContext = new QuizDbContext();
         public ActionResult Index()
         {
+            
             return View();
         }
-		[HttpPost]
-        public ActionResult GetQuiz(string userName, string password, string rememberMe)
+        [HttpPost]
+        public ActionResult GetQuiz(UserViewModel userViewModel)
         {
-            SetQuestions();
-            Session["user"] = new User()
+            if (ModelState.IsValid)
             {
-                Score = 0,
-                UserName = userName
-            };
-            return GetQuestion();
+                SetQuestions();
+                Session["user"] = new User()
+                {
+                    Score = 0,
+                    UserName = userViewModel.UserName
+                };
+                return GetQuestion();
+            }
+            return View("Index", userViewModel);
         }
 
-        public ActionResult GetQuestion(int questionNumber=0, int questionAnswer=0)
+        public ActionResult GetQuestion(int questionNumber = 0, int questionAnswer = 0)
         {
             var questions = (List<Question>)Session["questions"];
             if (questionNumber != 0)
@@ -37,7 +42,7 @@ namespace QuizDemo.Controllers
                 {
                     user.Score += questions.ElementAt(questionNumber - 1).Score;
                     Session["user"] = user;
-                }               
+                }
             }
 
             if (questionNumber == questions.Count)
